@@ -92,6 +92,95 @@ body {
   display: none;
 }
 
+/* Navbar Search Form */
+.navbar .search-form {
+  position: absolute;
+  top: 100%;
+  right: 7%;
+  background-color: #fff;
+  width: 40rem;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  transform: scale(0);
+  transform-origin: top;
+  transition: all 0.3s;
+}
+
+.navbar .search-form.active {
+  transform: scale(1);
+}
+
+.navbar .search-form #search-box {
+  height: 100%;
+  width: 100%;
+  font-size: 1.6rem;
+  color: var(--bg);
+  padding: 1rem;
+}
+
+.navbar .search-form label {
+  cursor: pointer;
+  font-size: 2rem;
+  color: var(--bg);
+  margin-right: 1rem;
+  line-height: 0;
+}
+
+/* shopping-cart */
+.shopping-cart {
+  position: absolute;
+  top: 100%;
+  right: -100%;
+  height: 100vh;
+  width: 35rem;
+  padding: 0 1.5rem;
+  color: var(--bg);
+  background-color: #fff;
+  transition: all 0.5s;
+}
+
+.shopping-cart.active {
+  right: 0;
+}
+
+.shopping-cart .cart-item {
+  margin: 2rem 0;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px dashed #666;
+  position: relative;
+}
+
+.shopping-cart .cart-item img {
+  width: 6rem;
+  height: 6rem;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.shopping-cart h3 {
+  font-size: 1.6rem;
+  padding-bottom: 0.5rem;
+}
+
+.shopping-cart .item-price {
+  font-size: 1.2rem;
+}
+
+.shopping-cart .remove-item {
+  position: absolute;
+  right: 1rem;
+  cursor: pointer;
+}
+
+.shopping-cart .remove-item:hover {
+  color: var(--primary);
+}
+/* Navbar end */
+
 /* Hero Section */
 .hero {
   height: 100vh;
@@ -156,22 +245,25 @@ body {
 /* About Section */
 .about,
 .menu,
+.produks,
 .contact {
   padding: 8rem 7% 1.4rem;
 }
 
 .about h2,
 .menu h2,
+.produks h2,
 .contact h2 {
   text-align: center;
   font-size: 2.6rem;
   margin-top: 3rem;
-  margin-bottom: 3rem;
+  margin-bottom: 0.8rem;
 }
 
 .about span,
 .menu span,
-.contact span {
+.contact span,
+.produks span {
   color: var(--primary);
 }
 
@@ -207,11 +299,8 @@ body {
 /* About Section End */
 
 /* Menu Section End */
-.menu h2,
-.contact h2 {
-  margin-bottom: 0.8rem;
-}
 .menu p,
+.produks p,
 .contact p {
   text-align: center;
   max-width: 30rem;
@@ -245,6 +334,73 @@ body {
   text-align: center;
 }
 /* Menu Section end */
+
+/* Product section start */
+.produks .row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  gap: 1.5rem;
+  margin-top: 4rem;
+}
+
+.produks .produk-card {
+  text-align: center;
+  border: 1px solid #666;
+  padding: 2rem;
+}
+
+.produks .produk-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.produks .produk-icons a {
+  width: 4rem;
+  height: 4rem;
+  color: #fff;
+  border-radius: 50%;
+  border: 1px solid #666;
+  margin: 0.3rem;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.produks .produk-icons a:hover {
+  background-color: var(--primary);
+  border: 1px solid var(--primary);
+}
+
+.produks .row .produk-img {
+  padding: 1rem 0;
+}
+.produks .row .produk-img img {
+  width: 80%;
+  height: 30rem;
+  object-fit: cover;
+}
+
+.produks .produk-content h3 {
+  font-size: 1.8rem;
+}
+
+.produks .produk-price,
+.modal .produk-price {
+  font-size: 1.3rem;
+  margin-top: 0.6rem;
+  font-weight: 600;
+}
+
+.produks .produk-price span,
+.modal .produk-price span {
+  text-decoration: line-through;
+  font-weight: 400;
+  font-size: 1.2rem;
+  font-style: italic;
+}
+/* Product section end */
 
 /* Contact section start */
 .contact .row {
@@ -342,6 +498,82 @@ footer .credit p {
 }
 /* footer end */
 
+/* modal box start */
+/* item detail */
+.modal {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99;
+  overflow: auto;
+  background-color: rgba(1, 1, 1, 0.6);
+}
+
+.modal .modal-container {
+  position: relative;
+  background-color: #fefefe;
+  color: var(--bg);
+  margin: auto;
+  /* height: 40rem; */
+  padding: 1.2rem;
+  border: 1px solid #666;
+  width: 80%;
+  animation: animateModal 0.8s;
+}
+
+.modal .modal-container .close-icon {
+  position: absolute;
+  right: 1rem;
+}
+
+.modal .modal-content {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.modal .modal-content img {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  margin-right: 2rem;
+  margin-bottom: 2rem;
+}
+
+.modal .modal-content p {
+  font-size: 1.2rem;
+  line-height: 1.8rem;
+  margin-top: 1.2rem;
+}
+
+.modal .modal-content a {
+  background-color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  color: #fff;
+  gap: 0.5rem;
+  width: 15rem;
+  margin-top: 1.5rem;
+}
+
+/* model animation */
+@keyframes animateModal {
+  from {
+    top: -500px;
+    overflow: 0;
+  }
+
+  to {
+    top: 0;
+    overflow: 1;
+  }
+}
+/* modal box end */
+
 /* Media Query */
 
 /* laptop */
@@ -434,11 +666,21 @@ footer .credit p {
     padding: 1rem 2rem 3rem;
   }
   /* contact section end */
+
+  /* modal box item start */
+  .modal .modal-content {
+    flex-wrap: wrap;
+  }
+  /* modal box item end */
 }
 
 /* mobile */
-@media (max-width: 450px) {
+@media (max-width: 576px) {
   html {
     font-size: 55%;
+  }
+
+  .navbar .search-form {
+    width: 90%;
   }
 }
